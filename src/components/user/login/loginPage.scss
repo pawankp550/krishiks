@@ -2,5 +2,19 @@
 
 .loginpage-form {
     width: 60%;
-    @include flex-containe;
+    background: $green-light;
+    @include flex-container-center;
+
+    .loginform {
+        width: 100%;
+        @include flex-container-center;
+
+        .form-control {
+            @include flex-container-column;
+
+            input {
+                @include border-primary;
+            }
+        }
+    }
 }

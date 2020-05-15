@@ -2,6 +2,8 @@ import React from 'react'
 import LogInForm from './LogInForm'
 import Layout from '../../core/Layout'
 
+import './loginPage.scss'
+
 function LogInPage() {
     return (
         <Layout>

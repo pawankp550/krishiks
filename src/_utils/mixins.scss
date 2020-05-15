@@ -1,6 +1,20 @@
-@mixin flex-container {
+@import './variables.scss';
+
+// containers
+@mixin flex-container-center {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
+
+@mixin flex-container-column {
+    display: flex;
+    flex-direction: column;
+}  
+
+// fields 
+@mixin border-primary {
+    border: solid 1px $gray-light;
+    border-radius: $border-radius-standard;
+}
