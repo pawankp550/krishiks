@@ -32,7 +32,7 @@ function LogInForm() {
                         type="email" 
                         placeholder="Enter your email" 
                     />
-                    <ErrorMessage name='email' />
+                    <div className="loginform-error"><ErrorMessage name='email' /></div>
                 </div>    
 
                 <div className="form-control">
@@ -43,7 +43,7 @@ function LogInForm() {
                         type="password"
                         placeholder="Enter your password"
                     />
-                    <ErrorMessage name='password' />
+                    <div className="loginform-error"><ErrorMessage name='password' /></div>
                 </div>
                 <button type="submit" >
                     Login
