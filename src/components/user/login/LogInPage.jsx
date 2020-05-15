@@ -5,7 +5,9 @@ import Layout from '../../core/Layout'
 function LogInPage() {
     return (
         <Layout>
-            <LogInForm/>
+            <div className="loginpage-form">
+                <LogInForm/>
+            </div>
         </Layout>
     )
 }

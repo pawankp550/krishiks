@@ -1,0 +1,6 @@
+@import '../../../_utils/modules.scss';
+
+.loginpage-form {
+    width: 60%;
+    @include flex-containe;
+}
