@@ -14,10 +14,14 @@
     }
 
     &-end {
-        flex-grow: 1;
+        flex-grow: 0.5;
         display: flex;
         justify-content: space-around;
         align-items: center;
+
+        @media (max-width: 768px) {
+            justify-content: space-between;    
+        }
     }
 
     &-cart {
@@ -35,6 +39,12 @@
             padding: 1px 2px;
             font-size: 9px;
             color: white;
+        }
+    }
+
+    &-desktop-option{
+        @media (max-width: 768px) {
+            display: none ;    
         }
     }
 
@@ -62,13 +72,13 @@
         align-items: center;
         flex-direction: column;
         z-index: 10;
-        background-color: rgba(211,211,211,0.8);
+        background-color: rgba(211,211,211,0.9);
     }
 
     &-close {
         position: absolute;
         top: 23px;
-        right: 46px;
+        right: 35px;
         
         path {
             fill: $dark-slate-gray;
