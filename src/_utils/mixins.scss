@@ -20,7 +20,7 @@
 
 // borders 
 @mixin border-primary {
-    border: solid 1px $gray-light;
+    border: none;
     border-radius: $border-radius-standard;
 }
 

@@ -5,7 +5,7 @@
     display: flex;
     justify-content: space-between;
     box-shadow: 0px 1px 10px $gray-light;
-    color: $medium-dark-blue;
+    color: $font-color1;
     font-weight: 500;
 
     &-start {
@@ -50,9 +50,9 @@
 
     &-burger-icon {
         path {
-            fill: $dark-slate-gray;
+            fill: $font-color1;
         }
-        @media (min-width: 768px) {
+        @media (min-width: 1024px) {
             display: none ;    
         }
     }
@@ -81,7 +81,7 @@
         right: 35px;
         
         path {
-            fill: $dark-slate-gray;
+            fill: $font-color1;
         }
     }
 }

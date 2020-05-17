@@ -25,7 +25,7 @@ function LogInForm() {
         >
             <Form className="loginform">
                 <div className="form-control">
-                    <label htmlFor="email">Email</label>
+                    <label htmlFor="email">EMAIL</label>
                     <Field 
                         id="email"
                         name="email" 
@@ -36,7 +36,7 @@ function LogInForm() {
                 </div>    
 
                 <div className="form-control">
-                    <label htmlFor="password">Password</label>
+                    <label htmlFor="password">PASSWORD</label>
                     <Field
                         id="email"
                         name="password"
@@ -46,7 +46,7 @@ function LogInForm() {
                     <div className="loginform-error"><ErrorMessage name='password' /></div>
                 </div>
                 <button type="submit" >
-                    Login
+                    LOGIN
                 </button>
             </Form>
 
