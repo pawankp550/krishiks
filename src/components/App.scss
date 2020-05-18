@@ -1,7 +1,22 @@
+@import '../_utils//modules.scss';
+
 * {
   outline: none;
 }
 
 body {
   margin: 0;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: $primary-blue;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: $primary-blue;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: $primary-blue;
 }
