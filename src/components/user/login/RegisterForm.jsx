@@ -2,22 +2,33 @@ import React from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as yup from 'yup'
 
+import { registerUser } from '../services'
+
 function RegisterForm() {
     const initialValues = {
-        firstName: '',
-        lastName: '',
+        firstname: '',
+        lastname: '',
         email: '',
         password: '',
         confirmPassword: ''
     }
 
-    const onSubmit = values => {
-        console.log(values)
+    const onSubmit = async values => {
+        const { firstname, lastname, email, password } = values
+        const response = await registerUser({
+            firstname, lastname, email, password
+        })
+        
+        if (response.error) {
+            console.log(response.error.response.statusText)
+        }
+
+        console.log(response)
     }
 
     const validationSchema = yup.object({
-        firstName: yup.string().required('Required'),
-        lastName: yup.string().required('Required'),
+        firstname: yup.string().required('Required'),
+        lastname: yup.string().required('Required'),
         email: yup.string().required('Required').email('Invalid email format'),
         password: yup.string().required('Required').min(8, 'Password is too short'),
         confirmPassword: yup.string().required('Required').oneOf([yup.ref('password'), null], 'Passwords must match')
@@ -31,25 +42,25 @@ function RegisterForm() {
         >
             <Form className="loginform">
                 <div className="form-control">
-                    <label htmlFor="firstName">FIRST NAME</label>
+                    <label htmlFor="firstname">FIRST NAME</label>
                     <Field 
-                        id="firstName"
-                        name="firstName" 
+                        id="firstname"
+                        name="firstname" 
                         type="text" 
                         placeholder="Enter your firstname*" 
                     />
-                    <div className="loginform-error"><ErrorMessage name='firstName' /></div>
+                    <div className="loginform-error"><ErrorMessage name='firstname' /></div>
                 </div>  
 
                  <div className="form-control">
-                    <label htmlFor="lastName">LAST NAME</label>
+                    <label htmlFor="lastname">LAST NAME</label>
                     <Field 
-                        id="lastName"
-                        name="lastName" 
+                        id="lastname"
+                        name="lastname" 
                         type="text" 
                         placeholder="Enter your lastname*" 
                     />
-                    <div className="loginform-error"><ErrorMessage name='lastName' /></div>
+                    <div className="loginform-error"><ErrorMessage name='lastname' /></div>
                 </div>    
 
                 <div className="form-control">
