@@ -4,7 +4,7 @@ import * as yup from 'yup'
 
 import { registerUser } from '../services'
 
-function RegisterForm() {
+function RegisterForm({ setError }) {
     const initialValues = {
         firstname: '',
         lastname: '',
@@ -21,6 +21,11 @@ function RegisterForm() {
         
         if (response.error) {
             console.log(response.error.response.statusText)
+            if (/conflict/i.test(response.error.response.statusText)) {
+                setError('Email already exists')
+            } else {
+                setError(response.error.response.error.data.error)
+            }
         }
 
         console.log(response)
@@ -40,7 +45,7 @@ function RegisterForm() {
             onSubmit = {onSubmit}
             validationSchema = {validationSchema}
         >
-            <Form className="loginform">
+            <Form className="loginform" onBlur={ () => {setError('')} }>
                 <div className="form-control">
                     <label htmlFor="firstname">FIRST NAME</label>
                     <Field 
