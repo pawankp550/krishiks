@@ -3,8 +3,9 @@ import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as yup from 'yup'
 
 import { registerUser } from '../services'
+import ButtonLoader from '../../core/common/ButtonLoader'
 
-function RegisterForm({ setError }) {
+function RegisterForm({ setError, loading: {loading, setLoading} }) {
     const initialValues = {
         firstname: '',
         lastname: '',
@@ -14,21 +15,23 @@ function RegisterForm({ setError }) {
     }
 
     const onSubmit = async values => {
+        setLoading(true)
         const { firstname, lastname, email, password } = values
         const response = await registerUser({
             firstname, lastname, email, password
         })
         
         if (response.error) {
-            console.log(response.error.response.statusText)
+            setLoading(false)
             if (/conflict/i.test(response.error.response.statusText)) {
                 setError('Email already exists')
             } else {
                 setError(response.error.response.error.data.error)
             }
+        } else {
+            setLoading(false)
+            window.location.reload()
         }
-
-        console.log(response)
     }
 
     const validationSchema = yup.object({
@@ -101,8 +104,8 @@ function RegisterForm({ setError }) {
                     <div className="loginform-error"><ErrorMessage name='confirmPassword' /></div>
                 </div>
 
-                <button type="submit" >
-                    REGISTER
+                <button type="submit" disabled={loading ? true : false}>
+                    { loading ? <ButtonLoader /> :  'REGISTER'}
                 </button>
             </Form>
 

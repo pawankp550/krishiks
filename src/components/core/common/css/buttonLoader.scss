@@ -1,0 +1,38 @@
+.buttonloader-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    span {
+        color: rgb(238, 235, 235);
+    }
+  }
+  
+  @keyframes arrows {
+    0%,
+    100% {
+      transform: translatey(0px);
+    }
+    50% {
+      transform: translatey(5px);
+    }
+  }
+  
+  .span0 {
+    animation: arrows 1s 0s infinite ease-in;
+  }
+
+  .span1 {
+    animation: arrows 1s 0.1s infinite ease-in;
+  }
+
+  .span2 {
+    animation: arrows 1s 0.3s infinite ease-in;
+  }
+
+  .span3 {
+    animation: arrows 1s 0.4s infinite ease-in;
+  }
+
+  .span4 {
+    animation: arrows 1s 0.5s infinite ease-in;
+  }
