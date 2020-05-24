@@ -1,15 +1,28 @@
 import React from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as yup from 'yup'
+import { loginUser } from '../services'
+import ButtonLoader from '../../core/common/ButtonLoader'
 
-function LogInForm() {
+function LogInForm({ setError, loading: {loading, setLoading} }) {
     const initialValues = {
         email: '',
         password: ''
     }
 
-    const onSubmit = values => {
-        console.log(values)
+    const onSubmit = async values => {
+        setLoading(true)
+        const response = await loginUser(values)
+        if (response.error) {
+            setLoading(false)
+            if (response.error.response.status === 404) {
+                setError('Email or Password is wrong')
+            } else {
+                setError(response.error.message)
+            }
+        } else {
+            setLoading(false)
+        }
     }
 
     const validationSchema = yup.object({
@@ -23,11 +36,11 @@ function LogInForm() {
             onSubmit = {onSubmit}
             validationSchema = {validationSchema}
         >
-            <Form className="loginform">
+            <Form className="loginform" onBlur={ () => {setError('')} }>
                 <div className="form-control">
                     <label htmlFor="email">EMAIL</label>
                     <Field 
-                        id="email"
+                        id="login-email"
                         name="email" 
                         type="email" 
                         placeholder="Enter your email" 
@@ -38,15 +51,15 @@ function LogInForm() {
                 <div className="form-control">
                     <label htmlFor="password">PASSWORD</label>
                     <Field
-                        id="email"
+                        id="login-password"
                         name="password"
                         type="password"
                         placeholder="Enter your password"
                     />
                     <div className="loginform-error"><ErrorMessage name='password' /></div>
                 </div>
-                <button type="submit" >
-                    LOGIN
+                <button type="submit" disabled={loading ? true : false}>
+                    { loading ? <ButtonLoader/> : 'LOGIN'}
                 </button>
             </Form>
 
