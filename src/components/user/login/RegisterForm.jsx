@@ -5,7 +5,9 @@ import * as yup from 'yup'
 import { registerUser } from '../services'
 import ButtonLoader from '../../core/common/ButtonLoader'
 
-function RegisterForm({ setError, loading: {loading, setLoading} }) {
+import allActions from '../../../_actions'
+
+function RegisterForm({dispatch, loading: {loading, setLoading} }) {
     const initialValues = {
         firstname: '',
         lastname: '',
@@ -24,9 +26,9 @@ function RegisterForm({ setError, loading: {loading, setLoading} }) {
         if (response.error) {
             setLoading(false)
             if (/conflict/i.test(response.error.response.statusText)) {
-                setError('Email already exists')
+                dispatch(allActions.alertActions.failure('Email already exists'))
             } else {
-                setError(response.error.response.error.data.error)
+                dispatch(allActions.alertActions.failure(response.error.response.error.data.error))
             }
         } else {
             setLoading(false)
@@ -48,7 +50,7 @@ function RegisterForm({ setError, loading: {loading, setLoading} }) {
             onSubmit = {onSubmit}
             validationSchema = {validationSchema}
         >
-            <Form className="loginform" onBlur={ () => {setError('')} }>
+            <Form className="loginform" onBlur={ () => {dispatch(allActions.alertActions.clear())} }>
                 <div className="form-control">
                     <label htmlFor="firstname">FIRST NAME</label>
                     <Field 

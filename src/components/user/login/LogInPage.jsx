@@ -3,6 +3,7 @@ import Layout from '../../core/Layout'
 import LogInForm from './LogInForm'
 import RegisterForm from './RegisterForm'
 import ErrorBox from '../../core/common/ErrorBox'
+import { useSelector, useDispatch } from 'react-redux'
 
 import './loginPage.scss'
 
@@ -11,16 +12,19 @@ function LogInPage() {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState('')
 
+    const errorState = useSelector(state => state.alert)
+    const dispatch = useDispatch()
+
     const toggleForm = (type) => {
         setToggleForm(type)
     }
 
     return (
         <Layout>
-            {error? <ErrorBox error={error} /> : null}
+            {errorState.type && errorState.type === 'alert-error'? <ErrorBox error={errorState.message} /> : null}
             <div className='loginpage-toggle-form'> <span onClick={() => {toggleForm('login')}} className={_toggleForm === 'login' ? 'active' : null }>Login</span>/<span onClick={() => {toggleForm('register')}} className={_toggleForm === 'register' ? 'active' : null }>Register</span> </div>
             <div className="loginpage-form">
-                {_toggleForm === 'login' ? <LogInForm setError = {setError} loading={{ loading, setLoading }}/> : <RegisterForm setError = {setError} loading={{ loading, setLoading }}/>}                
+                {_toggleForm === 'login' ? <LogInForm setError = {setError} loading={{ loading, setLoading }}/> : <RegisterForm dispatch={dispatch} loading={{ loading, setLoading }}/>}                
             </div>
         </Layout>
     )
