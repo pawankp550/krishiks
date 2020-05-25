@@ -1,28 +1,18 @@
 import React from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as yup from 'yup'
-import { loginUser } from '../services'
 import ButtonLoader from '../../core/common/ButtonLoader'
 
-function LogInForm({ setError, loading: {loading, setLoading} }) {
+import allActions from '../../../_actions'
+
+function LogInForm({ dispatch, loggingIn }) {
     const initialValues = {
         email: '',
         password: ''
     }
 
     const onSubmit = async values => {
-        setLoading(true)
-        const response = await loginUser(values)
-        if (response.error) {
-            setLoading(false)
-            if (response.error.response.status === 404) {
-                setError('Email or Password is wrong')
-            } else {
-                setError(response.error.message)
-            }
-        } else {
-            setLoading(false)
-        }
+        dispatch(allActions.userActions.login(values))
     }
 
     const validationSchema = yup.object({
@@ -36,7 +26,7 @@ function LogInForm({ setError, loading: {loading, setLoading} }) {
             onSubmit = {onSubmit}
             validationSchema = {validationSchema}
         >
-            <Form className="loginform" onBlur={ () => {setError('')} }>
+            <Form className="loginform" onBlur={ () => {dispatch(allActions.alertActions.clear())} }>
                 <div className="form-control">
                     <label htmlFor="email">EMAIL</label>
                     <Field 
@@ -58,8 +48,8 @@ function LogInForm({ setError, loading: {loading, setLoading} }) {
                     />
                     <div className="loginform-error"><ErrorMessage name='password' /></div>
                 </div>
-                <button type="submit" disabled={loading ? true : false}>
-                    { loading ? <ButtonLoader/> : 'LOGIN'}
+                <button type="submit" disabled={loggingIn ? true : false}>
+                    { loggingIn ? <ButtonLoader/> : 'LOGIN'}
                 </button>
             </Form>
 

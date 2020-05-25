@@ -1,5 +1,6 @@
 import React from 'react'
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { Router, Switch, Route } from "react-router-dom";
+import history from '../_helpers/history'
 
 // core components
 import Home from './core/Home'
@@ -14,7 +15,7 @@ import CreateProduct from './admin/CreateProduct'
 
 export default function Routes() {
     return (
-        <BrowserRouter>
+        <Router history={history}>
             <Switch>
                 <Route path="/" exact component={Home}/>
 
@@ -23,6 +24,6 @@ export default function Routes() {
                 <Route path="/admin/dashboard" exact component={Dashboard}/>
                 <Route path="/admin/dashboard/createproduct" exact component={CreateProduct}/>
             </Switch>
-        </BrowserRouter>
+        </Router>
     )
 }
