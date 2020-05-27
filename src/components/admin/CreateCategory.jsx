@@ -1,5 +1,4 @@
 import React, {useState} from 'react'
-import Layout from './Layout'
 import ButtonLoader from '../core/common/ButtonLoader'
 
 import allActions from '../../_actions'
@@ -41,7 +40,8 @@ export default function CreateCategory() {
 
 
     return (
-        <Layout>
+        <>
+            <div> <h3> Create Category </h3> </div>
             <Formik 
                 initialValues = {initialValues}
                 onSubmit = {onSubmit}
@@ -57,13 +57,13 @@ export default function CreateCategory() {
                             placeholder="Enter category" 
                         />
                         <div className="categoryform-error"><ErrorMessage name='name' /></div>
-                    </div>    
+                    </div>
 
                     <button type="submit" disabled={loading ? true : false}>
                         { loading ? <ButtonLoader /> :  'CREATE'}
                     </button>
                 </Form>
             </Formik>
-        </Layout>
+        </>    
     )
 }

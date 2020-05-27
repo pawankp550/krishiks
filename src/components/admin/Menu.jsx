@@ -12,7 +12,7 @@ export default function Menu() {
                 Orders
             </div>
             <div className='menu-item'>
-                 <NavLink to='/admin/dashboard/createcategory'> Create Category </NavLink>
+                 <NavLink to='/admin/dashboard/categories'> Categories </NavLink>
             </div>
             <div className='menu-item'>
                 Create Seller
