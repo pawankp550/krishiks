@@ -14,7 +14,7 @@ function CreateProduct() {
         quantity: '',
         seller: '',
         shipping: false,
-        photo: null
+        photo: ''
     }
 
     const onSubmit = values => {

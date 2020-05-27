@@ -12,6 +12,7 @@ import LogInPage from './user/login/LogInPage'
 import Dashboard from './admin/Dashboard'
 import CreateProduct from './admin/CreateProduct'
 import Categories from './admin/Categories'
+import Sellers from './admin/Sellers'
 
 
 export default function Routes() {
@@ -25,6 +26,7 @@ export default function Routes() {
                 <Route path="/admin/dashboard" exact component={Dashboard}/>
                 <Route path="/admin/dashboard/createproduct" exact component={CreateProduct}/>
                 <Route path="/admin/dashboard/categories" exact component={Categories}/>
+                <Route path="/admin/dashboard/sellers" exact component={Sellers}/>
             </Switch>
         </Router>
     )

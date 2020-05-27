@@ -15,7 +15,7 @@ export default function Menu() {
                  <NavLink to='/admin/dashboard/categories'> Categories </NavLink>
             </div>
             <div className='menu-item'>
-                Create Seller
+                <NavLink to='/admin/dashboard/sellers'> Sellers </NavLink>
             </div>
             <div className='menu-item'>
                 <NavLink to='/admin/dashboard/createproduct'> Create Product</NavLink>
