@@ -45,3 +45,13 @@ export const createSeller = async (data, token) => {
         return { error: err}
     }
 }
+
+export const getSellers = async () => {
+    try {
+        const response = await Axios.get(`${URL}/sellers`)
+        return response
+    } 
+    catch (err) {
+        return { error: err}
+    }
+}
