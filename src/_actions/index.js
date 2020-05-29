@@ -1,9 +1,11 @@
 import alertActions from './alertActions'
 import userActions from './userActions'
+import loadingActions from './loadingActions'
 
 const allActions = {
     alertActions,
-    userActions
+    userActions,
+    loadingActions
 }
 
 export default allActions

@@ -1,6 +1,7 @@
 import React from 'react'
-import { Formik, Form, Field, ErrorMessage } from 'formik'
+import ButtonLoader from '../core/common/ButtonLoader'
 
+import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as yup from 'yup'
 import { authHeader } from '../../_helpers/auth'
 import { createProduct } from './services'
@@ -18,7 +19,8 @@ function ImageComponent(props) {
 }
 
 
-function CreateProductForm({ categories, sellers }) {
+function CreateProductForm({ categories, sellers, loadingState }) {
+    console.log(loadingState)
     const user = authHeader()
     const dispatch = useDispatch()
     const initialValues = {
@@ -44,6 +46,7 @@ function CreateProductForm({ categories, sellers }) {
     })
 
     const onSubmit = async (values, { resetForm }) => {
+        dispatch(allActions.loadingActions.loadingInProgress())
         var formData = new FormData()
         for(let key in values) {
             if ( values[key]) {
@@ -60,12 +63,14 @@ function CreateProductForm({ categories, sellers }) {
 
         const response = await createProduct(formData, user.token)
         if (response.error) {
+            dispatch(allActions.loadingActions.loadingDone())
             if (/conflict/i.test(response.error.response.statusText)) {
                 dispatch(allActions.alertActions.failure('Product already exists'))
             } else {
                 dispatch(allActions.alertActions.failure(response.error.response.error.data.error))
             }
         } else {
+            dispatch(allActions.loadingActions.loadingDone())
             resetForm()
         }
     }
@@ -211,7 +216,9 @@ function CreateProductForm({ categories, sellers }) {
                         <div className="productform-error"><ErrorMessage name='imageData' /></div>
                     </div>   
                     <button type="submit" >
-                        REGISTER
+                            {
+                                loadingState.loading ? <ButtonLoader/> : 'REGISTER'
+                            }
                     </button>
                 </Form>
             </Formik>

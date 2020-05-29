@@ -3,8 +3,10 @@ import CreateProductForm from './CreateProductForm'
 import Layout from './Layout'
 
 import { getCategories, getSellers } from './services'
+import { useSelector } from 'react-redux'
 
 export default function CreateProduct() {
+    const loadingState = useSelector(state => state.loading)
     const [categories, setCategories] = useState({})
     const [sellers, setSellers] = useState({})
 
@@ -33,7 +35,7 @@ export default function CreateProduct() {
 
     return (
         <Layout>
-            {sellers.length > 0 && categories.length > 0 ? <CreateProductForm categories = {categories} sellers = {sellers}/> : null}
+            {sellers.length > 0 && categories.length > 0 ? <CreateProductForm loadingState = {loadingState} categories = {categories} sellers = {sellers}/> : null}
         </Layout>
         
     )
