@@ -1,0 +1,13 @@
+@import '../../../../_utils/modules.scss';
+
+.error-slide {
+    background-color: $primary-success;
+    padding: 20px 50px;
+    @include primary-shadow;
+    @include border-primary;
+    animation-duration: 1s;
+
+    .error-exclamation {
+        color: rgb(8, 107, 66)
+    }
+}

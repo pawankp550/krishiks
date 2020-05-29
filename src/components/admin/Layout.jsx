@@ -1,6 +1,7 @@
 import React from 'react'
 import Menu from './Menu'
 import ErrorBox from '../core/common/ErrorBox'
+import SuccessBox from '../core/common/SuccessBox'
 
 import './css/dashboard.scss'
 
@@ -14,6 +15,7 @@ export default function Layout({children}) {
                 <Menu/>
             </div>
             <div className="dashboard-right">
+            {errorState.type && errorState.type === 'alert-success'? <SuccessBox error={errorState.message} /> : null}
             {errorState.type && errorState.type === 'alert-error'? <ErrorBox error={errorState.message} /> : null}
                 {children}
             </div>

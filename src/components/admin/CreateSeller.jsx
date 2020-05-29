@@ -33,6 +33,7 @@ export default function CreateSeller() {
             }
         } else {
             setLoading(false)
+            dispatch(allActions.alertActions.success('Seller created successfully'))
             resetForm()
         }
     }
