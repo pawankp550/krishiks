@@ -55,3 +55,20 @@ export const getSellers = async () => {
         return { error: err}
     }
 }
+
+// product 
+
+export const createProduct = async (data, token) => {
+    try {
+        const response = await Axios.post(`${URL}/product/create`, data,
+            {
+            headers: {
+                Authorization: token
+            }
+        })
+        return response
+    } 
+    catch (err) {
+        return { error: err}
+    }
+}
