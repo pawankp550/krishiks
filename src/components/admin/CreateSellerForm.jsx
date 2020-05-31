@@ -47,13 +47,13 @@ export default function CreateSeller() {
 
     return (
         <>
-            <div> <h3> Create Seller </h3> </div>
             <Formik 
                 initialValues = {initialValues}
                 onSubmit = {onSubmit}
                 validationSchema = {validationSchema}
             >
-                <Form className="categoryform" onBlur={ () => {dispatch(allActions.alertActions.clear())} }>
+                <Form className="create-category-form" onBlur={ () => {dispatch(allActions.alertActions.clear())} }>
+                    <div className="form-title"> CREATE SELLER </div>
                     <div className="form-control">
                         <label htmlFor="name">NAME</label>
                         <Field 

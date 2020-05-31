@@ -1,6 +1,6 @@
 import React from 'react'
 import Layout from './Layout'
-import CreateCategory from './CreateCategory'
+import CreateCategory from './CreateCategoryForm'
 import ManageCategories from './ManageCategories'
 
 export default function Categories() {

@@ -1,8 +1,9 @@
 @import '../../../_utils/modules.scss';
 
 .dashboard {
+    height: 100%;
     display: flex;
-
+    
     &-left {
         width: 200px;
     }
@@ -34,7 +35,7 @@
     }
 }
 
-.create-product-form {
+.create-product-form, .create-category-form, .create-category-form {
     width: 60%;
     padding: 15px 0px;
 
@@ -67,7 +68,7 @@
             border-radius: $border-radius-standard;
         }
 
-        .productform-error {
+        .productform-error, .categoryform-error {
             color: $validation-error;
         }
 

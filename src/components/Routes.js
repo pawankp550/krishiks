@@ -9,7 +9,7 @@ import Home from './core/Home'
 import LogInPage from './user/login/LogInPage'
 
 // admin components
-import Dashboard from './admin/Dashboard'
+import Main from './admin/Main'
 import CreateProduct from './admin/CreateProduct'
 import Categories from './admin/Categories'
 import Sellers from './admin/Sellers'
@@ -23,7 +23,7 @@ export default function Routes() {
 
                 <Route path="/signin" exact component={LogInPage}/>
 
-                <Route path="/admin/dashboard" exact component={Dashboard}/>
+                <Route path="/admin/dashboard" exact component={Main}/>
                 <Route path="/admin/dashboard/createproduct" exact component={CreateProduct}/>
                 <Route path="/admin/dashboard/categories" exact component={Categories}/>
                 <Route path="/admin/dashboard/sellers" exact component={Sellers}/>

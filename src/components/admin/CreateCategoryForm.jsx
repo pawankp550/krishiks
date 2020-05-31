@@ -41,19 +41,20 @@ export default function CreateCategory() {
 
     return (
         <>
-            <div> <h3> Create Category </h3> </div>
             <Formik 
                 initialValues = {initialValues}
                 onSubmit = {onSubmit}
                 validationSchema = {validationSchema}
             >
-                <Form className="categoryform" onBlur={ () => {dispatch(allActions.alertActions.clear())} }>
+                <Form className="create-category-form" onBlur={ () => {dispatch(allActions.alertActions.clear())} }>
+                    <div className="form-title"> CREATE CATEGORY </div>
+
                     <div className="form-control">
                         <label htmlFor="name">NAME</label>
                         <Field 
                             id="name"
                             name="name" 
-                            type="name" 
+                            type="text" 
                             placeholder="Enter category" 
                         />
                         <div className="categoryform-error"><ErrorMessage name='name' /></div>
