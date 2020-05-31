@@ -32,13 +32,14 @@ function CreateProductForm({ categories, sellers, loadingState }) {
         subcategory: [],
         quantity: '',
         seller: '',
-        shipping: false,
+        shipping: true,
         imageData: ''
     }
 
     const validationSchema = yup.object({
         name: yup.string().required('Required'),
         price: yup.string().required('Required'),
+        category: yup.string().required('Required'),
         description: yup.string().required('Required'),
         quantity: yup.string().required('Required'),
         imageData: yup.string().required('Required')
@@ -71,6 +72,7 @@ function CreateProductForm({ categories, sellers, loadingState }) {
             }
         } else {
             dispatch(allActions.loadingActions.loadingDone())
+            dispatch(allActions.alertActions.success('Product created successfully'))
             resetForm()
         }
     }
@@ -82,6 +84,7 @@ function CreateProductForm({ categories, sellers, loadingState }) {
                 validationSchema = {validationSchema}
             >
                 <Form className="create-product-form" onBlur={ () => {dispatch(allActions.alertActions.clear())} }>
+                    <div className="form-title"> CREATE PRODUCT </div>
                     <div className="form-control">
                         <label htmlFor="name">NAME</label>
                         <Field 
@@ -111,7 +114,7 @@ function CreateProductForm({ categories, sellers, loadingState }) {
                             id="price"
                             name="price" 
                             type="number" 
-                            placeholder="Enter product price" 
+                            placeholder="Enter product price*" 
                         />
                         <div className="productform-error"><ErrorMessage name='price' /></div>
                     </div>    
@@ -149,6 +152,7 @@ function CreateProductForm({ categories, sellers, loadingState }) {
                             name="category"
                             as="select"
                         >
+                            <option >Select Category</option>
                             {categories.map((item, i) => {
                                 return (
                                 <option key={i} value={item._id}>{item.name}</option>
@@ -165,7 +169,7 @@ function CreateProductForm({ categories, sellers, loadingState }) {
                             id="quantity"
                             name="quantity" 
                             type="number" 
-                            placeholder="Enter product quantity" 
+                            placeholder="Enter product quantity*" 
                         />
                         <div className="productform-error"><ErrorMessage name='quantity' /></div>
                     </div>   
@@ -177,6 +181,7 @@ function CreateProductForm({ categories, sellers, loadingState }) {
                             name="seller"
                             as="select"
                         >
+                            <option >Select Seller</option>
                             {sellers.map((item, i) => {
                                 return (
                                 <option key={i} value={item._id}>{item.name}</option>
@@ -215,9 +220,9 @@ function CreateProductForm({ categories, sellers, loadingState }) {
                             </Field>
                         <div className="productform-error"><ErrorMessage name='imageData' /></div>
                     </div>   
-                    <button type="submit" >
+                    <button type="submit" disabled={loadingState.loading ? true : false}>
                             {
-                                loadingState.loading ? <ButtonLoader/> : 'REGISTER'
+                                loadingState.loading ? <ButtonLoader/> : 'CREATE'
                             }
                     </button>
                 </Form>

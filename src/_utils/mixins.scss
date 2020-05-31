@@ -40,3 +40,34 @@
   background: $primary-blue;
   cursor: pointer;
 }
+
+
+// Admin forms
+// @mixin form-title {
+//   color: $dark-slate-gray;
+//   font-weight: 600;
+//   text-align: center;
+// }
+
+// @mixin form-control-container {
+//   @include flex-container-column;
+//   margin: 20px 0px;
+// }
+
+// @mixin form-input-label {
+//     color: $dark-slate-gray;
+//     font-weight: 600;
+//     text-align: center;
+// }
+
+// @mixin form-inputs {
+//     padding: 7px 5px;
+//     border: solid 1px $primary-blue;
+//     border-radius: $border-radius-standard;
+//     color: $medium-dark-blue;
+// }
+
+// @mixin form-textarea {
+//     border: solid 1px $primary-blue;
+//     border-radius: $border-radius-standard;
+// }

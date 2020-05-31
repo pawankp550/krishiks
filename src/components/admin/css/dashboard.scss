@@ -9,11 +9,12 @@
 
     &-right {
         flex:1;
+        @include flex-container-center;
     }
 }
 
 .menu {
-    height: 100vh;
+    height: 100%;
     background-color: $medium-dark-blue;
 
     &-item {
@@ -29,6 +30,66 @@
           
         &:hover {
             background-color: $primary-blue;
+        }
+    }
+}
+
+.create-product-form {
+    width: 60%;
+    padding: 15px 0px;
+
+    .form-title {
+        color: $dark-slate-gray;
+        font-weight: 600;
+        text-align: center;
+    }
+
+    .form-control {
+        @include flex-container-column;
+        margin: 20px 0px;
+
+        label {
+            color: $font-color1;
+            font-weight: 500;
+            font-size: $medium-font-size;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"], input[type="number"], input[type="file"], select {
+            padding: 7px 5px;
+            border: solid 1px $primary-blue;
+            border-radius: $border-radius-standard;
+            color: $medium-dark-blue;
+        }
+
+        textarea {
+            border: solid 1px $primary-blue;
+            border-radius: $border-radius-standard;
+        }
+
+        .productform-error {
+            color: $validation-error;
+        }
+
+        &-checkboxes {
+            display: flex;
+            flex-direction: column;
+            height: 70px;
+            overflow-y: scroll;
+            border: solid 1px $primary-blue;
+            border-radius: $border-radius-standard;
+            color: $medium-dark-blue;
+        }
+
+    }
+    
+    button {
+        @include primary-button;
+        width: 100%;
+        transition: background 1s ease;
+
+        &:hover {
+            background: $medium-dark-blue;
         }
     }
 }
