@@ -63,12 +63,13 @@ function CreateProductForm({ categories, sellers, loadingState }) {
 
 
         const response = await createProduct(formData, user.token)
+        console.log(response)
         if (response.error) {
             dispatch(allActions.loadingActions.loadingDone())
             if (/conflict/i.test(response.error.response.statusText)) {
                 dispatch(allActions.alertActions.failure('Product already exists'))
             } else {
-                dispatch(allActions.alertActions.failure(response.error.response.error.data.error))
+                dispatch(allActions.alertActions.failure(response.error.response.data.error))
             }
         } else {
             dispatch(allActions.loadingActions.loadingDone())

@@ -29,7 +29,7 @@ export default function CreateSeller() {
             if (/conflict/i.test(response.error.response.statusText)) {
                 dispatch(allActions.alertActions.failure('Seller already exists'))
             } else {
-                dispatch(allActions.alertActions.failure(response.error.response.error.data.error))
+                dispatch(allActions.alertActions.failure(response.error.response.data.error))
             }
         } else {
             setLoading(false)
