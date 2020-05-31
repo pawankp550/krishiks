@@ -9,28 +9,28 @@ import { useDispatch } from 'react-redux'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as yup from 'yup'
 
-export default function CreateCategory() {
+export default function CreateCategory({loadingState}) {
     const user = authHeader()
     const dispatch = useDispatch()
-    const [loading, setLoading] = useState(false)
 
     const initialValues = {
         name: ''
     }
 
-    const onSubmit = async values => {
-        setLoading(true)
+    const onSubmit = async (values, {resetForm}) => {
+        dispatch(allActions.loadingActions.loadingInProgress())
         const response = await createCategory(values.name, user.token)
-        console.log(response)
         if (response.error) {
-            setLoading(false)
+            dispatch(allActions.loadingActions.loadingDone())
             if (/conflict/i.test(response.error.response.statusText)) {
                 dispatch(allActions.alertActions.failure('Category already exists'))
             } else {
                 dispatch(allActions.alertActions.failure(response.error.response.data.error))
             }
         } else {
-            setLoading(false)
+            dispatch(allActions.loadingActions.loadingDone())
+            dispatch(allActions.alertActions.success('Category created successfully'))
+            resetForm()
         }
     }
 
@@ -60,8 +60,8 @@ export default function CreateCategory() {
                         <div className="categoryform-error"><ErrorMessage name='name' /></div>
                     </div>
 
-                    <button type="submit" disabled={loading ? true : false}>
-                        { loading ? <ButtonLoader /> :  'CREATE'}
+                    <button type="submit" disabled={loadingState.loading ? true : false}>
+                        { loadingState.loading ? <ButtonLoader /> :  'CREATE'}
                     </button>
                 </Form>
             </Formik>

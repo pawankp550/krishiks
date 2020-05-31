@@ -20,7 +20,6 @@ function ImageComponent(props) {
 
 
 function CreateProductForm({ categories, sellers, loadingState }) {
-    console.log(loadingState)
     const user = authHeader()
     const dispatch = useDispatch()
     const initialValues = {
@@ -63,7 +62,6 @@ function CreateProductForm({ categories, sellers, loadingState }) {
 
 
         const response = await createProduct(formData, user.token)
-        console.log(response)
         if (response.error) {
             dispatch(allActions.loadingActions.loadingDone())
             if (/conflict/i.test(response.error.response.statusText)) {
