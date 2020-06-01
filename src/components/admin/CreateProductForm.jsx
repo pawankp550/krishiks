@@ -25,6 +25,7 @@ function CreateProductForm({ categories, sellers, loadingState }) {
     const initialValues = {
         name: '',
         description: '',
+        size: '',
         price: '',
         sale_price: '',
         category: '',
@@ -38,6 +39,7 @@ function CreateProductForm({ categories, sellers, loadingState }) {
     const validationSchema = yup.object({
         name: yup.string().required('Required'),
         price: yup.string().required('Required'),
+        size: yup.string().required('Required'),
         category: yup.string().required('Required'),
         description: yup.string().required('Required'),
         quantity: yup.string().required('Required'),
@@ -105,7 +107,18 @@ function CreateProductForm({ categories, sellers, loadingState }) {
                             placeholder="Enter product description*" 
                         />
                         <div className="productform-error"><ErrorMessage name='description' /></div>
-                    </div>    
+                    </div>   
+
+                    <div className="form-control">
+                        <label htmlFor="name">SIZE</label>
+                        <Field 
+                            id="size"
+                            name="size" 
+                            type="text" 
+                            placeholder="Enter product size*" 
+                        />
+                        <div className="productform-error"><ErrorMessage name='size' /></div>
+                    </div>   
 
                     <div className="form-control">
                         <label htmlFor="price">PRICE</label>
