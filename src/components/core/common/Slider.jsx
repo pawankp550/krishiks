@@ -29,13 +29,21 @@ const responsive = {
         loop:false,
     },
     1300:{
-        items:4,
+        items:5,
         loop:false,
-        stagePadding: 0
+        stagePadding: 30,
     }
 }
 
 export default function Slider({data, title}) {
+    const renderCard = ( ) => {
+        return data.map((item, i) => {
+            return (
+                <ProductCard key={i} data={item}/>
+            )
+        })
+    }
+
     return (
         <div className="slider-container">
             <div className="slider-title">{title}</div>
@@ -44,14 +52,10 @@ export default function Slider({data, title}) {
                 dots={true}
                 className="owl-theme"
                 loop
-                margin={10}
-                nav
             >
-                <ProductCard/>
-                <ProductCard/>
-                <ProductCard/>
-                <ProductCard/>
-                <ProductCard/>
+                {
+                    renderCard()
+                }
             </OwlCarousel>
             </div>
     )

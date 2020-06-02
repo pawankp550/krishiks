@@ -8,6 +8,8 @@
 
     &-image {
         padding: 5px 20px;
+        height: 200px;
+        box-sizing: border-box;
         img {
             width: 100%;
         }
@@ -23,6 +25,7 @@
             font-weight: 600;
             color: $gray-dark;    
             font-size: 20px;
+            text-transform: uppercase;
         }
 
         &-desc {
@@ -49,18 +52,20 @@
         }
         
         &-view {
-            font-size: 20px;
+            font-size: 15px;
             color: $primary-blue;
+            padding: 2px 10px;
+            border: solid 1px $green-lighter;
+            cursor: pointer;
         }
     }
     
     &-add {
+        cursor: pointer;
         padding: 10px;
         text-align: center;
         font-size: 20px;
         color: $primary-blue;
-        margin-bottom: 10px;
-        margin: 8px 8px;
         background-color: $green-lighter;
         border-radius: 20px;
     }
