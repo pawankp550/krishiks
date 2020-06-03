@@ -4,6 +4,7 @@ import history from '../_helpers/history'
 
 // core components
 import Home from './core/Home'
+import Shop from './core/Shop'
 
 // user components
 import LogInPage from './user/login/LogInPage'
@@ -20,6 +21,7 @@ export default function Routes() {
         <Router history={history}>
             <Switch>
                 <Route path="/" exact component={Home}/>
+                <Route path="/shop" exact component={Shop}/>
 
                 <Route path="/signin" exact component={LogInPage}/>
 
