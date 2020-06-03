@@ -1,3 +1,14 @@
+@import '../../../../_utils/modules.scss';
+
 .slider-container{
     width: 100%;
+
+    .slider-title {
+        text-align: center;
+        margin-bottom: 20px;
+        font-weight: 600;
+        color: $gray-dark;    
+        font-size: 20px;
+        text-transform: uppercase;
+    }
 }
