@@ -20,3 +20,13 @@ export const fetchProductsByFilter = async () => {
         return { error: err}
     }
 }
+
+export const fetchProductCategories = async () => {
+    try {
+        const response = await Axios.get(`${URL}/categories`)
+        return response
+    } 
+    catch (err) {
+        return { error: err}
+    }
+}
