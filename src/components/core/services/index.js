@@ -11,9 +11,9 @@ export const fetchProducts = async ({limit, sortType, sortby }) => {
     }
 }
 
-export const fetchProductsByFilter = async () => {
+export const fetchProductsByFilter = async (filters) => {
     try {
-        const response = await Axios.post(`${URL}/products/by/filter`)
+        const response = await Axios.post(`${URL}/products/by/filter`, {filters})
         return response
     } 
     catch (err) {

@@ -1,0 +1,48 @@
+@import '../../../../_utils/modules.scss';
+
+.plp-checkbox{
+    text-transform: uppercase;
+    padding: 0px 20px;
+
+    &-title {
+        text-align: center;
+        font-weight: 600;
+        color: $gray-dark;    
+    }
+
+    ul {
+        list-style: none;
+        padding: 0px;
+        margin-top: 20px;
+
+        li{
+
+            input {
+                display: none;
+            }
+
+            input:checked + label {
+                background-color: $green-light;
+                color: white;
+            }
+            
+            label{
+                font-weight: 500;
+                color: $gray-dark;   
+                margin-bottom: 10px;
+                border-radius: 10px;
+                width: 100%;
+                text-align: center;
+                display: inline-block;
+                background-color: white;
+                border: 1px solid $green-light;
+                cursor: pointer;
+                padding: 8px 0px;
+                font-size: 12px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                transition: all 0.5s ease-in-out;
+            }
+        }
+    }
+}
