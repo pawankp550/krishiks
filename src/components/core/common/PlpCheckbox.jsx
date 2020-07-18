@@ -3,7 +3,7 @@ import './css/plpCheckbox.scss';
 
 
 const PlpCheckbox = (props) => {
-    const { data, title, handleFilters } = props
+    const { data, title, handleFilters, loading } = props
 
     const [optionsSelected, setOptionsSelected] = useState([])
 
@@ -26,7 +26,7 @@ const PlpCheckbox = (props) => {
         return data.map((item, i) => {
             return (
                 <li key={i}>
-			        <input className="styled-plp-checkbox" id={item._id} type="checkbox" value={item._id} />
+			        <input className="styled-plp-checkbox" id={item._id} type="checkbox" value={item._id} disabled={loading? true : false}/>
 			        <label htmlFor={item._id}>{item.name}</label>
 		        </li>
             )

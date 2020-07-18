@@ -8,6 +8,7 @@ import { fetchProductsByFilter, fetchProductCategories } from './services'
 import './css/shop.scss'
 
 export default function Shop() {
+    const [loading, setLoading] = useState(false)
     const [productFilters, setProductFilters] = useState({
         filters: {
             category: [],
@@ -18,10 +19,13 @@ export default function Shop() {
     const [products, setProducts] = useState([])
     
     const getProducts = async (filters) => {
+        setLoading(true)
         const response = await fetchProductsByFilter(filters)
         if (response.error) {
+            setLoading(false)
             console.log(response.error)
         } else {
+            setLoading(false)
             setProducts(response.data.products)
         }
     }
@@ -33,11 +37,14 @@ export default function Shop() {
     const [categories, setCategories] = useState([])
 
     const getCategories = async () => {
+        setLoading(true)
         const response = await fetchProductCategories()
         if (response.error) {
             console.log(response.error)
+            setLoading(false)
         } else {
             setCategories(response.data)
+            setLoading(false)
         }
     }
 
@@ -64,7 +71,7 @@ export default function Shop() {
         <Layout>
             <div className="shop">
                 <div className="shop-left">
-                    <PlpCheckbox data={categories} title={'Category'} handleFilters={(filters) => {handleFilters(filters, 'category')}}/>
+                    {products[0] ? <PlpCheckbox loading={loading} data={categories} title={'Category'} handleFilters={(filters) => {handleFilters(filters, 'category')}}/> : null}
                 </div>
                 <div className="shop-right">
                     {products[0] ? renderProductCards() : null}

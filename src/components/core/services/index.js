@@ -17,7 +17,7 @@ export const fetchProductsByFilter = async (filters) => {
         return response
     } 
     catch (err) {
-        return { error: err}
+        return { error: err }
     }
 }
 
