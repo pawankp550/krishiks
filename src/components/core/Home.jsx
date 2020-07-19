@@ -17,7 +17,6 @@ export default function Home() {
         if(response.error) {
             console.log(response)
         } else {
-            console.log(response.data)
             setTrendingProducts(response.data)
         }
     }

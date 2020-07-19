@@ -21,7 +21,7 @@ export const createCategory = async (name, token) => {
 
 export const getCategories = async () => {
     try {
-        const response = await Axios.get(`${URL}/category`)
+        const response = await Axios.get(`${URL}/categories`)
         return response
     } 
     catch (err) {

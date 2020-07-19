@@ -1,9 +1,15 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
+import cartActions from '../../../_actions/cartActions'
 import './css/productCard.scss'
 
 export default function ProductCard({data}) {
-    const { photo, name, size, seller, price, sale_price } = data
+    const { photo, name, size, seller, price, sale_price, _id } = data
+    const dispatch = useDispatch()
+    const cart = useSelector(state => state.cart)
+    const currentProduct = cart.filter(item => item._id === _id)
+ 
     return (
         <div className="product-card">
             <div className="product-card-image"><img src={photo} alt={name} /></div>
@@ -22,9 +28,22 @@ export default function ProductCard({data}) {
                 </div>
                 <div className="product-card-details-weight">{size}</div>
             </div>
-            <div className="product-card-add">
-                <span>ADD TO BAG</span>
-            </div>
+            {
+                currentProduct.length ? 
+                    (
+                        <div className="product-card-cartquantity" >
+                            <span className="product-card-cartquantity-dec" onClick = {() => {dispatch(cartActions.decrementProductQuantity(data))}}>-</span> {currentProduct.length ? currentProduct[0].count : null} <span className="product-card-cartquantity-inc" onClick = {() => {dispatch(cartActions.incrementProductQuantity(data))}}>+</span><span className="product-card-cartquantity-del" onClick = {() => {dispatch(cartActions.removeProductFromCart(data))}}>d</span>
+                        </div>
+                    ) 
+                    : 
+                    (
+                        <div className="product-card-add" onClick = {() => {dispatch(cartActions.addProductToCart(data))}}>
+                            <span>ADD TO BAG</span>
+                    
+                    </div>
+                    )
+                
+            }
         </div>
     )
 }

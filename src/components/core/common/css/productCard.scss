@@ -99,4 +99,28 @@
             border-radius: 15px;
         }
     }
+    
+    &-cartquantity{
+        padding: 10px;
+        text-align: center;
+        font-size: 20px;
+        color: $primary-blue;
+        background-color: $green-lighter;
+        border-radius: 20px;
+
+        &-dec, &-inc {
+            cursor: pointer;
+            border: solid 1px;
+            border-radius: 20px;
+        }
+
+        &-dec {
+            padding: 0px 5px;
+        }
+
+        &-inc {
+            padding: 0px 2px;
+        }
+    }
+
 }
